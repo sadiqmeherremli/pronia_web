@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using pronia_web.DAL;
+
 namespace pronia_web
 {
     public class Program
@@ -8,6 +11,10 @@ namespace pronia_web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer("Server= WINDOWS-DM2RMSI\\SQLEXPRESS;Database= Pronia;Trusted_Connection= True;Integrated Security= True;Encrypt=false;");
+            });
 
             var app = builder.Build();
 
